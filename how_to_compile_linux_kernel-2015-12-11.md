@@ -1,4 +1,4 @@
-#How to compile custom linux kernel on ubuntu
+#How to compile custom linux kernel
 
 ## one clone linux kernel source code
 
@@ -124,3 +124,8 @@ title CentOS (2.6.18-8.el5)
 ```
 
 ```2.6.19-default``` is the kernel that our install
+
+then reboot ```sudo shutdown -r now``` to select the kernel that we installed.
+
+## Reference
+[CustomKernel- https://wiki.centos.org/zh/HowTos/Custom_Kernel](https://wiki.centos.org/zh/HowTos/Custom_Kernel)
