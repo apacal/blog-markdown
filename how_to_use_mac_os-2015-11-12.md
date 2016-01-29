@@ -88,9 +88,8 @@ Git 常用别名
 
 Oh My Zsh 提供了一套系统别名（alias），来达到相同的功能。比如gst作为git status的别名。而且 Git 插件是 Oh My Zsh 默认启用的，相当于你使用了 Oh My Zsh，你就拥有了一套高效率的别名，而且还是全球通用的。是不是棒棒哒？下面是一些常用的别名：
 
-
-|Alias|	Command|
-|:---|:----:|------:|
+| Alias |	Command |
+|:------------- |----------:|
 |gapa	|git add --patch|
 |gc!	|git commit -v --amend|
 |gcl	|git clone --recursive|
@@ -106,6 +105,9 @@ Oh My Zsh 提供了一套系统别名（alias），来达到相同的功能。�
 |gst	|git status|
 |gup	|git pull --rebase|
 |gwip	|git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit -m "--wip--"|
+
+
+
 完整列表请参考：[https://github.com/robbyrussell/oh-my-zsh/wiki/Plugin:git](https://github.com/robbyrussell/oh-my-zsh/wiki/Plugin:git)
 
 ###tmux

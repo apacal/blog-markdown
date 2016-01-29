@@ -1,0 +1,98 @@
+#指针 *pointer on c*
+
+##What
+C的指针一直是一个比较容易犯糊涂的地方，但是这也还是C/C++的最大的优势，更底层地操作硬件。有时间把脑子关于指针的知识梳理一遍。
+
+###什么是指针
+
+指针是一个指向内存地址的标志。举个例子来说，一条街道是一块内存，街道上的编号就是指针，知道了编号（指针）就能找到这个地方。但是这个比喻也是不那么恰当的，街道一个和另外一个地址存放的东西是很明显的，有的是车库，有的是商店我们到了这个地址就知道这是放什么的，但是指针不是，指针只是告诉我们开始的位置是哪里，没有告诉我们它的范围，如果我们要使用指针就必须知道这个指针存的是什么，是字符串，整数；指针和它所指向的类型是密不可分的。
+
+###指针有什么用
+
+指针是直接操作内存地址，所带来的就是高效。在c语言中没有引用这一概念，只有指针，当函数传递值的时候，使用指针会减少性能上的损耗，此外指针还支持一些加减，解引用等操作，对内存直接进行操作。
+
+
+###指针和数组
+C语言中只有一维数组，而且数组的大小必须在编译期就作为一个常数确定下来。对于一个数组，我们只能够做两件事：确定数组的大小，以及获得指向该数组下标为0的元素的指针。下标运算实际上是通过指针来进行的。举个例子来说，
+
+~~~cpp
+do {
+    printf("%c", "0123456789"[n % 10]);
+
+    n /= 10;
+
+} while ( n >= 0 );
+~~~
+上面一段代码是什么意思，首先字符串等于指向第一个字符的指针，接着对指针进行下标运算，也就是对字符数组进行下边运算，就是对n进行反向打印出来，比如是输入n = 1230 输出 0321。
+
+在C中如果函数传递数组会自动退化为指针，所以为了不对数组进行越界访问，必须将数组大小传递进去（但是当传递的是cstring的时候，可以不需要传递char[]的大小，因为我们可以通过``` size_t strlen(const char* string)```来计算cstring的大小。）
+
+~~~cpp
+void printUsername(char * users[]) {
+    unsigned int i, size = sizeof( users );
+
+    for ( i = 0; i < size; i++ ) {
+       fprintf(stdout, "%s\t", users[i]);
+    }
+}
+~~~
+
+一个简单的函数，传递一个char * users[] 的参数，将用户的name全部打印出来，问题在于对users进行sizeof运算的时候，所求的是char ** users的大小，并不是users元素的多少，而是指针的大小，上述代码会core dump或者少打印username，这也就是为什么main函数想要传递两个参数了，```int main(int argv, char * argc[])``` 或者```int main(int argv, char ** argc)```。
+
+
+###Linux kernel中的container_of
+Linux设备驱动中有使用到根据struct中的成员来获取一个包含这个struct指针的操作
+``` type* container_of(pointer, container_type, container_field)```
+
+
+~~~cpp
+#include <stdlib.h>
+#include <stdio.h>
+
+#define container_of(ptr, type, member) ({                      \
+        const typeof( ((type *)0)->member ) *__mptr = (ptr);    \
+        (type *)( (char *)__mptr - offsetof(type,member) );})
+
+#ifdef __compiler_offsetof
+#define offsetof(TYPE,MEMBER) __compiler_offsetof(TYPE,MEMBER)
+#else
+#define offsetof(TYPE, MEMBER) ((size_t) &((TYPE *)0)->MEMBER)
+#endif
+
+struct c_dev {
+    int num;
+
+};
+
+struct i_node {
+    int i;
+    struct c_dev* i_cdev;
+};
+struct my_dev {
+    int count;
+    struct c_dev my_cdev;
+};
+
+int main() {
+    struct my_dev dev;
+    printf("dev adress :%p, c_dev address %p \n", &dev, &dev.my_cdev);
+    struct i_node node;
+    node.i_cdev = &dev.my_cdev;
+
+    struct my_dev* dev_container;
+
+    dev_container = container_of(node.i_cdev, struct my_dev, my_cdev);
+
+    printf("dev adress :%p, c_dev address %p \n", dev_container, &dev_container->my_cdev);
+
+
+
+    return 0;
+}
+~~~
+在c_dev里面存放了一个int，而i_node结构有一个c_dev\*，my_dev结构有一个c_dev。
+实现实例一个i_node，my_dev dev，然后将my_dev中的c_dev的地址给i_node中的c_dev指针，之后我们就可以根据i_node中的c_dev\* 来获取一个包含c_dev\*的my_dev指针。
+注意这种不要经常使用，要不然代码很难理解，并且必须pointer的地址必须是container_type里面的成员的地址。container_of就是这个意思～
+
+
+*modify 2016-01-20 at GuangZhou TIT*

@@ -6,6 +6,7 @@
 ##How
 ###使用遍历的方式
 ​简单直接对string进行遍历，发现是delim char时，进行判断是否为空，不为空push到vector中
+
 ~~~cpp
 #include <string>
 #include <vector>
@@ -44,6 +45,7 @@ int main (int, char const **) {
     return 0;
 }
 ~~~
+
 注意该函数，只有explode后不为空才会push_back到vector中。输出结果如下
 ~~~cpp
 "this"
