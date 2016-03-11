@@ -1,7 +1,6 @@
-#general java code use velocity
-java velocity来生成java代码
+#java使用velocity来生成java代码
 
-#What
+##What
 类似于PHP中的Smarty，Velocity是一个基于java的模板引擎（template engine）。
 它允许任何人仅仅简单的使用模板语言（template language）来引用由java代码定义的对象。从而实现界面和Java代码的分离，使得界面设计人员可以和java程序开发人员同步开发一个遵循MVC架构的web站点。
 另外，Velocity的能力远不止web站点开发这个领域，例如，它可以从模板（template）产生SQL和PostScript、XML，它也可以被当作一个独立工具来产生源代码和报告，或者作为其他系统的集成组件使用。
@@ -9,9 +8,9 @@ Velocity也可以为Turbine web开发架构提供模板服务（template service
 当然我们也可以使用velocity来动态生成java文件，比如在android开发中根据xml中定义的数据表结构来生成对应的java类。
 cpp有对应的ctemplate。
 
-#How
+##How
 
-##获取Velocity相关JAR文件：
+###获取Velocity相关JAR文件：
 从[http://velocity.apache.org/](http://velocity.apache.org/)网站上下载最新的Velocity，这里我们下载了velocity-1.7.zip
 相关Jar包添加到项目中：
 解压velocity-1.7.zip，发下其根目录下有两个JAR文件：
@@ -64,8 +63,8 @@ fields.put("content", "String");
 context.put("fields", fields);
 ~~~
 
-##Velocity语法
-###访问对象属性：
+###Velocity语法
+####访问对象属性：
 默认是不支持访问对象属性的，可以通过编写方法来变通实现访问属性。
 ~~~java
 public class Field {
@@ -99,14 +98,14 @@ public class Field {
 this field type is ${field.getType()}
 ~~~
 
-###遍历List集合：
+####遍历List集合：
 ```
 #foreach($element in $list)
 	#element
 #end
 ```
 
-###使用判断语句：
+####使用判断语句：
 ```
 #if($condition)
 	true
@@ -114,7 +113,7 @@ this field type is ${field.getType()}
 	false
 #end
 ```
-###获取迭代索引值：
+####获取迭代索引值：
 默认使用变量名：```$velocityCount```
 也可以自定义此变量名，在```velocity.properties```中设置：
 ```directive.foreach.counter.name=index```

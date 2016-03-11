@@ -1,4 +1,4 @@
-#cpp编写explode函数 *split a string in cpp*
+#cpp编写explode函数
 
 ##What
 在之前使用php的使用，经常使用explode函数，将字符串分割成数组，而c++本身不提供这样一个函数，很简单就实现这样的一个函数。
