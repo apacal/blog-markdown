@@ -1,10 +1,10 @@
-#cpp编写explode函数
+# cpp编写explode函数
 
-##What
+## What
 在之前使用php的使用，经常使用explode函数，将字符串分割成数组，而c++本身不提供这样一个函数，很简单就实现这样的一个函数。
 
-##How
-###使用遍历的方式
+## How
+### 使用遍历的方式
 ​简单直接对string进行遍历，发现是delim char时，进行判断是否为空，不为空push到vector中
 
 ~~~cpp
@@ -56,7 +56,7 @@ int main (int, char const **) {
 " will use"
 ~~~
 
-###使用STL
+### 使用STL
 STL中的getline提供了这样一种形式[http://www.cplusplus.com/reference/string/string/getline/?kw=getline](http://www.cplusplus.com/reference/string/string/getline/?kw=getline)
 
 ~~~cpp
@@ -109,7 +109,7 @@ int main (int, char const **) {
 ""
 ~~~
 
-##We
+## We
 其实c++还是很方便的，特别是stl中有很多强大的地方，之前是搞php的，从php转到c++,觉得也没有太大的难度，只是将[http://php.net/manual/en/](http://php.net/manual/en/)换成了[http​://www.cplusplus.com/](http​://www.cplusplus.com/)。
 
 觉得使用c++重要一点就是善用stl.stl提供的东西和php提供的一些类似，让你脱离去管理内存，只是没有php那么都内置的函数而已，但是这些你都可以简单就写出来。
