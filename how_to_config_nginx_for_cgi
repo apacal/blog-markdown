@@ -1,0 +1,13 @@
+#如何配置nginx支持cgi-bin
+
+nginx 原始不支持cgi，修要使用fcgiwrap来支持cgi-bin.(modify in 2015-12-06, 修改使用fcgiwrap来支持cgi-bin)
+
+Fcgiwrap is another CGI wrapper that should work also for complex CGI scripts and - like Simple CGI - can be used for shared hosting environments because it allows each vhost to use its own cgi-bin directory.
+
+## step one 安装fcgiwrap
+
+~~~
+sudo apt-get install fcgiwrap
+~~~
+## step two config for nginx
+在nginx的配置文件中添加对于的

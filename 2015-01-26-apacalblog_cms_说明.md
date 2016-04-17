@@ -7,15 +7,15 @@
 ### 下载
 
 在github上可以找到最新的版本，下载下来，或者git clone 下来 。
-```
+~~~
 git clone https://github.com/apacal/apacalblog
-```
+~~~
 
 ### 建立和导入数据库
-```
+~~~
 cd doc
 ​mysql -uroot -p
-```
+~~~
 
 ~~~sql
 create database apacalblog;
@@ -27,9 +27,9 @@ source ./apacalblog.sql
 
 ### 修改配置文件
 编辑配置文件，修改mysql的连接密码和memcached的连接密码等
-```
+~~~
 vim Application/Common/Conf/config.php
-```
+~~~
 
 ~~~php
 // pdo
@@ -61,7 +61,7 @@ vim Application/Common/Conf/config.php
 ### 配置web服务器
 修改nginx或者apache的配置文件
 
-nginx默认是不支持pathinfo模式的，想要让nginx支持pathinfo。可以参考我的这篇文章安装nginx + php5-fpm + pathinfo.
+nginx默认是不支持pathinfo模式的，想要让nginx支持pathinfo。可以参考我的这篇文章[安装nginx + php5-fpm + pathinfo](http://apacal.cn/article/40.html#nav-home).
 
 ### 其他
 后台的图片管理使用了ckfinder插件，在plugin/ckfinder目录中。

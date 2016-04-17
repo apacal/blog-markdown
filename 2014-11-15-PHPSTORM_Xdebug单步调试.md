@@ -1,4 +1,4 @@
-# PHPSTORM Xdebug单步调试 
+# PHPSTORM Xdebug单步调试
 
 ## What
 以前写php都是用vim ，print_r, echo, var_dump来调试验证程序正确与否，从实习用了phpstorm后，发现一些好的ide对效率还是有很大的帮助，本文就来介绍下然后配置好phpstrom＋xdebug。
@@ -13,14 +13,14 @@ xdebug是一款php调试插件，支持远程调试，就是在php文件运行�
 ### 安装xdebug和配置xdebug
 
 如果是使用ubuntu的直接使用apt-get 安装
-```
+~~~
 (apacal)-(jobs:0)-(~/yEd)
 (! 1989)-> sudo apt-cache search xdebug | grep php
-```
+~~~
 
 找到xdebug的ini文件，加入监听端口和key等信息，通过 remote_host 和 remort_port 两个参数指定调试客户端位置。对于本地调试缺省即可，如果要远程调试，把参数改到对应接收调试信息的客户端地址即可
 
-```
+~~~
 (apacal)-(jobs:0)-(~/yEd)
 (! 1995)-> sudo vim /etc/php5/fpm/conf.d/20-xdebug.ini
 
@@ -30,25 +30,25 @@ xdebug.idekey="PHPSTORM"
 xdebug.remote_host=127.0.0.1
 xdebug.remote_port=9000
 xdebug.remote_enable=on
-```
+~~~
 
 重启php，查看是否有xdebug的信息
 
-```
+~~~
 (apacal)-(jobs:0)-(~/yEd)
 (! 1998)-> sudo service php5-fpm restart
 
 php5-fpm stop/waiting
 
 php5-fpm start/running, process 28489
-```
+~~~
 
-```
+~~~
 (apacal)-(jobs:0)-(~/yEd)
 (! 1999)-> php -i | grep xdebug | grep 9000
 
 xdebug.remote_port => 9000 => 9000
-```
+~~~
 PHP的配置好了，下面进行配置ide。
 ### 配置phpstorm
 
