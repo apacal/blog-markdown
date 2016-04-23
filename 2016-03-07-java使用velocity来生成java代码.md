@@ -114,11 +114,9 @@ this field type is ${field.getType()}
 #end
 ~~~
 #### 获取迭代索引值：
-默认使用变量名：~~~$velocityCount~~~
-也可以自定义此变量名，在~~~velocity.properties~~~中设置：
-~~~directive.foreach.counter.name=index~~~
-设置索引起始位置为0：
-~~~directive.foreach.counter.initial.value=0~~~
+默认使用变量名：``velocityCount``
+也可以自定义此变量名，在``velocity.properties``中设置： ``directive.foreach.counter.name=index``
+设置索引起始位置为0： ``directive.foreach.counter.initial.value=0``
 
 #### 遍历Map变量：
 ~~~
@@ -144,7 +142,7 @@ $a
 
 ### 使用方法
 在idea中生成jar文件，然后在终端运行（或者直接在idea中运行）
-~~~java -jar jarFile  genType templatePath templateName xmlPath outPath~~~
+``java -jar jarFile  genType templatePath templateName xmlPath outPath``
 
 ~~~
 java -jar out/artifacts/codegen_jar/codegen.jar db /Users/apacalzhong/IdeaProjects/codegen/template/ table.vm /Users/apacalzhong/IdeaProjects/codegen/template/table.db /Users/apacalzhong/IdeaProjects/codegen/build/
